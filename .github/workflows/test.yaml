@@ -1,23 +1,7 @@
-name: Workflow1
+name: src-workflow
 
 # Controls when the workflow will run
 on:
-  workflow_dispatch:
-    inputs: 
-      workflow2_name:
-        description: 'Workflow2 Name for Triggering'
-        required: true
-        default: 'Workflow2'
-      
-      workflow2_github_account:
-        description: 'GitHub Account Owner'
-        required: true
-        default: 'manu6300'
-      
-      workflow2_repo_github:
-        description: 'GitHub Repository Name'
-        required: true
-        default: 'githuaction'
   push:
     branches: [ main ]
   pull_request:
@@ -34,3 +18,10 @@ jobs:
       run: |
         version=${GITHUB_REF##*/}-${GITHUB_SHA::7}
         echo -e "$version"
+    - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.MY_SRC_PAT }}
+          repository: manu6300/githuaction
+          event-type: my-event
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
