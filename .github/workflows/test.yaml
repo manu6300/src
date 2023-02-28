@@ -24,4 +24,4 @@ jobs:
         token: ${{ secrets.MANU_PAT }}
         repository: manu6300/githuaction
         event-type: my-event
-        client-payload: '{"branch": "${{ github.ref_name }}", "sha": "${{ github.sha }}"}'
+        client-payload: '{"branch": "${{ github.ref_name }}", "sha": "${{ github.sha }}"}' 
