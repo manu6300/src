@@ -24,7 +24,7 @@ on:
     branches: [ main ]
 jobs:
   build:
-    name: Build Image
+    name: Build Image of
     runs-on: ubuntu-latest
 
     steps:
